@@ -247,7 +247,19 @@
                 <a href="#reservations" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Reserveren</a>
                 <a href="#contact" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Contact</a>
             </nav>
-            <div class="mt-8">
+            <div class="mt-8 space-y-4">
+                @auth
+                    <a href="{{ route('logout') }}" method="POST" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">
+                        Uitloggen
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">
+                        Inloggen
+                    </a>
+                    <a href="{{ route('register') }}" class="block w-full border-2 border-amber-700 text-amber-700 text-center py-3 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold mobile-nav-link">
+                        Registreren
+                    </a>
+                @endauth
                 <a href="#reservations" class="block w-full bg-amber-700 text-white text-center py-3 rounded-full hover:bg-amber-800 transition font-semibold mobile-nav-link">
                     Tafel Reserveren
                 </a>
@@ -290,6 +302,18 @@
                     </a>
                 </div>
                 <div class="flex items-center gap-4">
+                    @auth
+                        <a href="{{ route('logout') }}" method="POST" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">
+                            Uitloggen
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">
+                            Inloggen
+                        </a>
+                        <a href="{{ route('register') }}" class="hidden md:block border-2 border-amber-700 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold">
+                            Registreren
+                        </a>
+                    @endauth
                     <button class="hidden md:block bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition btn-pulse">
                         Tafel Reserveren
                     </button>
