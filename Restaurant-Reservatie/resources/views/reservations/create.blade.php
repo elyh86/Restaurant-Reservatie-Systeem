@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserveren - Restaurant De Smaak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/site.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="bg-stone-50 text-stone-800">
@@ -109,6 +110,11 @@
                             ></textarea>
                         </div>
 
+                        <!-- Availability Check -->
+                        <div id="availability-check" class="hidden p-4 rounded-lg mb-4" role="status">
+                            <p id="availability-message"></p>
+                        </div>
+
                         <button type="submit"
                             class="w-full bg-amber-700 text-white py-4 rounded-lg hover:bg-amber-800 transition font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
                             Reservering Bevestigen
@@ -116,20 +122,11 @@
                     </div>
                 </form>
 
-                @auth
-                    <div class="mt-8 text-center">
-                        <a href="{{ route('reservations.index') }}" class="text-amber-700 hover:text-amber-800 font-semibold">
-                            Bekijk uw reserveringen →
-                        </a>
-                    </div>
-                @else
-                    <div class="mt-8 p-4 bg-amber-50 rounded-lg text-center">
-                        <p class="text-stone-700">
-                            <a href="{{ route('login') }}" class="text-amber-700 font-semibold hover:underline">Log in</a> 
-                            om uw reserveringen te beheren.
-                        </p>
-                    </div>
-                @endauth
+                <div class="mt-8 text-center">
+                    <a href="{{ route('reservations.index') }}" class="text-amber-700 hover:text-amber-800 font-semibold">
+                        Bekijk uw reserveringen →
+                    </a>
+                </div>
             </div>
         </div>
     </main>
@@ -139,5 +136,41 @@
             <p>&copy; 2024 Restaurant De Smaak. Alle rechten voorbehouden.</p>
         </div>
     </footer>
+
+    <script>
+        const dateInput = document.getElementById('reservation_date');
+        const availabilityCheck = document.getElementById('availability-check');
+        const availabilityMessage = document.getElementById('availability-message');
+
+        dateInput.addEventListener('change', function() {
+            const date = this.value;
+            if (date) {
+                fetch('/api/check-availability', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ date: date })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    availabilityCheck.classList.remove('hidden');
+                    if (data.available) {
+                        availabilityCheck.classList.remove('bg-red-100', 'text-red-700');
+                        availabilityCheck.classList.add('bg-green-100', 'text-green-700');
+                        availabilityMessage.textContent = data.message;
+                    } else {
+                        availabilityCheck.classList.remove('bg-green-100', 'text-green-700');
+                        availabilityCheck.classList.add('bg-red-100', 'text-red-700');
+                        availabilityMessage.textContent = data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+    </script>
 </body>
 </html>

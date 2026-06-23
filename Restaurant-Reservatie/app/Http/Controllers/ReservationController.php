@@ -51,4 +51,35 @@ class ReservationController extends Controller
         
         return redirect()->route('reservations.index')->with('success', 'Reservering geannuleerd.');
     }
+
+    public function checkAvailability(Request $request)
+    {
+        $date = $request->input('date');
+        
+        if (!$date) {
+            return response()->json(['available' => true, 'available_tables' => 50, 'message' => 'Selecteer eerst een datum']);
+        }
+        
+        $existingReservations = Reservation::where('reservation_date', 'like', $date . '%')
+            ->where('status', '!=', 'cancelled')
+            ->get();
+        
+        $totalGuests = $existingReservations->sum('number_of_guests');
+        $maxCapacity = 50;
+        $availableTables = max(0, $maxCapacity - $totalGuests);
+        
+        if ($availableTables > 0) {
+            return response()->json([
+                'available' => true,
+                'available_tables' => $availableTables,
+                'message' => "Er zijn nog $availableTables plaatsen beschikbaar."
+            ]);
+        } else {
+            return response()->json([
+                'available' => false,
+                'available_tables' => 0,
+                'message' => 'Helaas is deze datum volgeboekt.'
+            ]);
+        }
+    }
 }

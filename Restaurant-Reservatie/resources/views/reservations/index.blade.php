@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn Reserveringen - Restaurant De Smaak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/site.css">
 </head>
 <body class="bg-stone-50 text-stone-800">
     <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50" role="navigation" aria-label="Hoofdnavigatie">

@@ -8,213 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        .font-playfair { font-family: 'Playfair Display', serif; }
-        .font-lato { font-family: 'Lato', sans-serif; }
-        
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1c1917;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader-content {
-            text-align: center;
-        }
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid #b45309;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .slide-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .slide-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .slide-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .slide-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Parallax effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #b45309;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(180, 83, 9, 0.4);
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            background: #92400e;
-            transform: translateY(-5px);
-        }
-        
-        /* Mobile menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 400px;
-            height: 100vh;
-            background: white;
-            z-index: 1001;
-            transition: right 0.3s ease;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-        }
-        .mobile-menu.open {
-            right: 0;
-        }
-        .mobile-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .mobile-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Hero text animation */
-        .hero-text {
-            animation: fadeInUp 1s ease forwards;
-        }
-        .hero-text-delay-1 {
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-        .hero-text-delay-2 {
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-        .hero-text-delay-3 {
-            animation: fadeInUp 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Card hover effects */
-        .menu-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .menu-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        /* Button pulse animation */
-        .btn-pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.7); }
-            50% { box-shadow: 0 0 0 15px rgba(180, 83, 9, 0); }
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f5f5f4;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #b45309;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #92400e;
-        }
-        
-        /* Form focus effects */
-        .form-input:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(180, 83, 9, 0.15);
-        }
-        
-        /* Stats counter animation */
-        .stat-number {
-            transition: all 0.3s ease;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/site.css">
 </head>
 <body class="font-lato bg-stone-50 text-stone-800 overflow-x-hidden">
     <!-- Loading Screen -->
@@ -226,96 +20,7 @@
         </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="p-8">
-            <div class="flex justify-between items-center mb-8">
-                <div class="font-playfair text-2xl font-bold text-amber-700">De Smaak</div>
-                <button id="closeMobileMenu" class="text-stone-600 hover:text-amber-700 transition">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <nav class="space-y-6">
-                <a href="#home" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Home</a>
-                <a href="#about" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Over Ons</a>
-                <a href="#menu" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Menu</a>
-                <a href="#reservations" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Reserveren</a>
-                <a href="#contact" class="block text-xl text-stone-700 hover:text-amber-700 transition mobile-nav-link">Contact</a>
-            </nav>
-            <div class="mt-8 space-y-4">
-                @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">Uitloggen</button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">Inloggen</a>
-                    <a href="{{ route('register') }}" class="block w-full border-2 border-amber-700 text-amber-700 text-center py-3 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold mobile-nav-link">Registreren</a>
-                @endauth
-                <a href="{{ route('reservations.create') }}" class="block w-full bg-amber-700 text-white text-center py-3 rounded-full hover:bg-amber-800 transition font-semibold mobile-nav-link">Tafel Reserveren</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-        </svg>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="font-playfair text-2xl font-bold text-amber-700">De Smaak</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-stone-600 hover:text-amber-700 transition relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-700 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#about" class="text-stone-600 hover:text-amber-700 transition relative group">
-                        Over Ons
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-700 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#menu" class="text-stone-600 hover:text-amber-700 transition relative group">
-                        Menu
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-700 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#reservations" class="text-stone-600 hover:text-amber-700 transition relative group">
-                        Reserveren
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-700 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#contact" class="text-stone-600 hover:text-amber-700 transition relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-700 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </div>
-                <div class="flex items-center gap-4">
-                    @auth
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Uitloggen</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Inloggen</a>
-                        <a href="{{ route('register') }}" class="hidden md:block border-2 border-amber-700 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold">Registreren</a>
-                    @endauth
-                    <a href="{{ route('reservations.create') }}" class="hidden md:block bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition">Tafel Reserveren</a>
-                    <button id="mobileMenuBtn" class="md:hidden text-stone-600 hover:text-amber-700 transition">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('partials.nav')
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center parallax" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920');">
@@ -390,54 +95,31 @@
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold">Populaire Gerechten</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Menu Item 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition menu-card fade-in">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600" alt="Dish" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">€28</div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                @foreach($menus as $index => $menu)
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition menu-card fade-in" style="animation-delay: {{ $index * 0.2 }}s;">
+                        <div class="relative overflow-hidden">
+                            @if($menu->image)
+                                <img src="{{ $menu->image }}" alt="{{ $menu->name }}" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                            @else
+                                <div class="w-full h-64 bg-stone-200 flex items-center justify-center">
+                                    <span class="text-6xl">🍽️</span>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 right-4 bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">€{{ number_format($menu->price, 2) }}</div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-playfair text-xl font-bold mb-2">{{ $menu->name }}</h3>
+                            <p class="text-stone-600 text-sm mb-4">{{ $menu->description }}</p>
+                            <a href="{{ route('menu.index') }}" class="block w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition font-semibold transform hover:scale-105 duration-300 text-center">
+                                Bekijk Menu →
+                            </a>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-bold mb-2">Zalm Filet</h3>
-                        <p class="text-stone-600 text-sm mb-4">Verse zalm met citroen-dillesaus en seizoensgroenten</p>
-                        <button class="w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition font-semibold transform hover:scale-105 duration-300">
-                            Bestel Nu →
-                        </button>
-                    </div>
-                </div>
-                <!-- Menu Item 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition menu-card fade-in" style="animation-delay: 0.2s;">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600" alt="Dish" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">€32</div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-bold mb-2">Biefstuk</h3>
-                        <p class="text-stone-600 text-sm mb-4">Malse biefstuk met pepersaus en gebakken aardappelen</p>
-                        <button class="w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition font-semibold transform hover:scale-105 duration-300">
-                            Bestel Nu →
-                        </button>
-                    </div>
-                </div>
-                <!-- Menu Item 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition menu-card fade-in" style="animation-delay: 0.4s;">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Dish" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">€24</div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-bold mb-2">Pizza Margherita</h3>
-                        <p class="text-stone-600 text-sm mb-4">Huisgemaakte pizza met mozzarella, tomaat en basilicum</p>
-                        <button class="w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition font-semibold transform hover:scale-105 duration-300">
-                            Bestel Nu →
-                        </button>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="text-center mt-12 fade-in">
-                <a href="#" class="inline-block border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-full hover:bg-amber-700 hover:text-white transition text-lg font-semibold transform hover:scale-105 duration-300">
+                <a href="{{ route('menu.index') }}" class="inline-block border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-full hover:bg-amber-700 hover:text-white transition text-lg font-semibold transform hover:scale-105 duration-300">
                     Bekijk Volledige Menu
                 </a>
             </div>
@@ -472,51 +154,39 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-xl p-8 shadow-2xl slide-right">
-                    <form id="reservationForm" class="space-y-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-stone-700 font-semibold mb-2">Naam</label>
-                                <input type="text" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300" placeholder="Uw naam" required>
+                    <div class="space-y-6">
+                        <p class="text-stone-600 mb-4">
+                            Maak eenvoudig een reservering via ons online systeem. Kies uw datum, tijd en aantal personen.
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 bg-amber-700 rounded-full flex items-center justify-center text-white text-sm">✓</span>
+                                Directe bevestiging
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 bg-amber-700 rounded-full flex items-center justify-center text-white text-sm">✓</span>
+                                Beheer uw reserveringen online
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 bg-amber-700 rounded-full flex items-center justify-center text-white text-sm">✓</span>
+                                Speciale wensen doorgeven
+                            </li>
+                        </ul>
+                        @auth
+                            <a href="{{ route('reservations.create') }}" class="block w-full bg-amber-700 text-white py-4 rounded-lg hover:bg-amber-800 transition font-semibold text-lg transform hover:scale-105 duration-300 shadow-lg text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+                                Nu Reserveren →
+                            </a>
+                        @else
+                            <div class="space-y-3">
+                                <a href="{{ route('login') }}" class="block w-full bg-amber-700 text-white py-4 rounded-lg hover:bg-amber-800 transition font-semibold text-lg transform hover:scale-105 duration-300 shadow-lg text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+                                    Inloggen & Reserveren →
+                                </a>
+                                <a href="{{ route('register') }}" class="block w-full border-2 border-amber-700 text-amber-700 py-4 rounded-lg hover:bg-amber-50 transition font-semibold text-lg text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+                                    Account Aanmaken
+                                </a>
                             </div>
-                            <div>
-                                <label class="block text-stone-700 font-semibold mb-2">Telefoon</label>
-                                <input type="tel" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300" placeholder="06 12345678" required>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-stone-700 font-semibold mb-2">Datum</label>
-                                <input type="date" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300" required>
-                            </div>
-                            <div>
-                                <label class="block text-stone-700 font-semibold mb-2">Tijd</label>
-                                <select class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300" required>
-                                    <option>17:00</option>
-                                    <option>18:00</option>
-                                    <option>19:00</option>
-                                    <option>20:00</option>
-                                    <option>21:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-stone-700 font-semibold mb-2">Aantal Personen</label>
-                            <select class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300" required>
-                                <option>1 persoon</option>
-                                <option>2 personen</option>
-                                <option>3 personen</option>
-                                <option>4 personen</option>
-                                <option>5+ personen</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-stone-700 font-semibold mb-2">Speciale Wensen</label>
-                            <textarea class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 form-input transition duration-300 h-24" placeholder="Allergieën, speciale gelegenheden, etc."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition font-semibold text-lg transform hover:scale-105 duration-300 shadow-lg">
-                            Reservering Bevestigen
-                        </button>
-                    </form>
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>
@@ -598,7 +268,7 @@
             }, 1000);
         });
 
-        // Mobile menu
+        // Mobile menu (guard elements before using them)
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileOverlay = document.getElementById('mobileOverlay');
@@ -606,50 +276,51 @@
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
         function openMobileMenu() {
+            if (!mobileMenu || !mobileOverlay) return;
             mobileMenu.classList.add('open');
             mobileOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
 
         function closeMobileMenuFn() {
+            if (!mobileMenu || !mobileOverlay) return;
             mobileMenu.classList.remove('open');
             mobileOverlay.classList.remove('open');
             document.body.style.overflow = '';
         }
 
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        closeMobileMenu.addEventListener('click', closeMobileMenuFn);
-        mobileOverlay.addEventListener('click', closeMobileMenuFn);
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenuFn);
-        });
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMobileMenuFn);
+        if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenuFn);
+        if (mobileNavLinks.length) mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenuFn));
 
         // Back to top button
         const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        if (backToTop) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             });
-        });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                navbar.classList.add('shadow-lg');
-            } else {
-                navbar.classList.remove('shadow-lg');
-            }
-        });
+        if (navbar) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+        }
 
         // Scroll animations
         const observerOptions = {
@@ -706,7 +377,7 @@
             });
         }, { threshold: 0.5 });
 
-        statsObserver.observe(aboutSection);
+        if (aboutSection) statsObserver.observe(aboutSection);
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -725,29 +396,31 @@
             });
         });
 
-        // Form validation and submission
+        // Form validation and submission (guard presence)
         const reservationForm = document.getElementById('reservationForm');
-        reservationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = this.querySelector('input[type="text"]').value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const date = this.querySelector('input[type="date"]').value;
-            const time = this.querySelector('select:nth-of-type(2)').value;
-            const guests = this.querySelector('select:nth-of-type(3)').value;
-            const special = this.querySelector('textarea').value;
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            // Simple validation
-            if (!name || !phone || !date || !time || !guests) {
-                alert('Vul alstublieft alle verplichte velden in.');
-                return;
-            }
+                // Get form values
+                const name = this.querySelector('input[type="text"]')?.value;
+                const phone = this.querySelector('input[type="tel"]')?.value;
+                const date = this.querySelector('input[type="date"]')?.value;
+                const time = this.querySelector('select:nth-of-type(2)')?.value;
+                const guests = this.querySelector('select:nth-of-type(3)')?.value;
+                const special = this.querySelector('textarea')?.value;
 
-            // Show success message
-            alert(`Bedankt voor uw reservering, ${name}!\n\nDatum: ${date}\nTijd: ${time}\nAantal personen: ${guests}\n\nWij nemen binnen 24 uur contact met u op.`);
-            this.reset();
-        });
+                // Simple validation
+                if (!name || !phone || !date || !time || !guests) {
+                    alert('Vul alstublieft alle verplichte velden in.');
+                    return;
+                }
+
+                // Show success message
+                alert(`Bedankt voor uw reservering, ${name}!\n\nDatum: ${date}\nTijd: ${time}\nAantal personen: ${guests}\n\nWij nemen binnen 24 uur contact met u op.`);
+                this.reset();
+            });
+        }
 
         // Add active state to navigation links based on scroll position
         const sections = document.querySelectorAll('section[id]');

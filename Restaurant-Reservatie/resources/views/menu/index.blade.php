@@ -5,31 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Restaurant De Smaak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/site.css">
 </head>
 <body class="bg-stone-50 text-stone-800">
-    <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50" role="navigation" aria-label="Hoofdnavigatie">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="{{ route('home') }}" class="text-2xl font-bold text-amber-700">De Smaak</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="{{ route('home') }}" class="text-stone-600 hover:text-amber-700 transition">Home</a>
-                    <a href="{{ route('menu.index') }}" class="text-amber-700 font-semibold" aria-current="page">Menu</a>
-                    <a href="{{ route('reservations.create') }}" class="text-stone-600 hover:text-amber-700 transition">Reserveren</a>
-                </div>
-                <div class="flex items-center gap-4">
-                    @auth
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Uitloggen</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Inloggen</a>
-                        <a href="{{ route('register') }}" class="hidden md:block border-2 border-amber-700 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold">Registreren</a>
-                    @endauth
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('partials.nav')
 
     <header class="pt-32 pb-20 bg-gradient-to-br from-amber-50 to-orange-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
