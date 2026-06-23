@@ -249,20 +249,15 @@
             </nav>
             <div class="mt-8 space-y-4">
                 @auth
-                    <a href="{{ route('logout') }}" method="POST" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">
-                        Uitloggen
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">Uitloggen</button>
+                    </form>
                 @else
-                    <a href="{{ route('login') }}" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">
-                        Inloggen
-                    </a>
-                    <a href="{{ route('register') }}" class="block w-full border-2 border-amber-700 text-amber-700 text-center py-3 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold mobile-nav-link">
-                        Registreren
-                    </a>
+                    <a href="{{ route('login') }}" class="block w-full text-center text-stone-700 hover:text-amber-700 transition font-semibold mobile-nav-link">Inloggen</a>
+                    <a href="{{ route('register') }}" class="block w-full border-2 border-amber-700 text-amber-700 text-center py-3 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold mobile-nav-link">Registreren</a>
                 @endauth
-                <a href="#reservations" class="block w-full bg-amber-700 text-white text-center py-3 rounded-full hover:bg-amber-800 transition font-semibold mobile-nav-link">
-                    Tafel Reserveren
-                </a>
+                <a href="{{ route('reservations.create') }}" class="block w-full bg-amber-700 text-white text-center py-3 rounded-full hover:bg-amber-800 transition font-semibold mobile-nav-link">Tafel Reserveren</a>
             </div>
         </div>
     </div>
@@ -303,20 +298,15 @@
                 </div>
                 <div class="flex items-center gap-4">
                     @auth
-                        <a href="{{ route('logout') }}" method="POST" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">
-                            Uitloggen
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Uitloggen</button>
+                        </form>
                     @else
-                        <a href="{{ route('login') }}" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">
-                            Inloggen
-                        </a>
-                        <a href="{{ route('register') }}" class="hidden md:block border-2 border-amber-700 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold">
-                            Registreren
-                        </a>
+                        <a href="{{ route('login') }}" class="hidden md:block text-stone-600 hover:text-amber-700 transition font-semibold">Inloggen</a>
+                        <a href="{{ route('register') }}" class="hidden md:block border-2 border-amber-700 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-700 hover:text-white transition font-semibold">Registreren</a>
                     @endauth
-                    <button class="hidden md:block bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition btn-pulse">
-                        Tafel Reserveren
-                    </button>
+                    <a href="{{ route('reservations.create') }}" class="hidden md:block bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition">Tafel Reserveren</a>
                     <button id="mobileMenuBtn" class="md:hidden text-stone-600 hover:text-amber-700 transition">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>

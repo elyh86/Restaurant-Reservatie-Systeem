@@ -21,23 +21,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             
-            $user = Auth::user();
-            
-            // Redirect based on role
-            return match($user->role) {
-                'admin' => redirect()->route('admin.dashboard'),
-                'employee' => redirect()->route('employee.dashboard'),
-                'customer' => redirect()->route('customer.dashboard'),
-                default => redirect()->route('home'),
-            };
+            return redirect()->intended(route('customer.dashboard'));
         }
 
-        return back()->withErrors([
-            'email' => 'De opgegeven inloggegevens zijn onjuist.',
-        ]);
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors([
+                'email' => 'De opgegeven inloggegevens zijn onjuist.',
+            ]);
     }
 
     public function showRegister()
@@ -59,12 +53,12 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'phone' => $validated['phone'] ?? null,
-            'role' => 'customer', // Default role for new registrations
+            'role' => 'customer',
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('customer.dashboard');
+        return redirect()->route('customer.dashboard')->with('success', 'Account succesvol aangemaakt!');
     }
 
     public function logout(Request $request)
@@ -73,6 +67,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }
